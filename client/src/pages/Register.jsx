@@ -4,6 +4,7 @@ import { useState } from "react";
 import Validations from "../components/Validations";
 import axios from "axios";
 import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
   const [values, setValues] = useState({
