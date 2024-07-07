@@ -1,7 +1,18 @@
 import { Link } from "react-router-dom";
 import "../assets/css/Register.css";
+import { useState } from "react";
 
 const Register = () => {
+  const [values, setValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleInput = (e) => {
+    setValues({ ...values, [e.target.name]: e.target.value });
+  };
+
   return (
     <div className="form-container">
       <form className="form">
@@ -15,6 +26,7 @@ const Register = () => {
             className="form-control"
             placeholder="Enter Name"
             name="name"
+            onChange={handleInput}
           />
         </div>
 
@@ -28,6 +40,7 @@ const Register = () => {
             placeholder="Enter email"
             name="email"
             autoComplete="off"
+            onChange={handleInput}
           />
         </div>
         <div className="form-group">
@@ -39,6 +52,7 @@ const Register = () => {
             className="form-control"
             placeholder="*******"
             name="password"
+            onChange={handleInput}
           />
         </div>
         <button className="form-btn">Register</button>
