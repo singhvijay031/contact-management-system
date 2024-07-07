@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import "../assets/css/Register.css";
 import { useState } from "react";
 import Validations from "../components/Validations";
+import axios from "axios";
+import { toast } from "react-toastify";
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -10,6 +12,7 @@ const Register = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  // const [serverErrors, setServerErrors] = useState([]);
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -19,6 +22,20 @@ const Register = () => {
     e.preventDefault();
     const errs = Validations(values);
     setErrors(errs);
+    if (errors.name === "" && errors.email === "" && errors.password === "") {
+      axios
+        .post("", values)
+        .then((res) => {
+          console.log(res);
+          toast.success("Account Created Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
 
   return (
@@ -58,7 +75,7 @@ const Register = () => {
             Password:
           </label>
           <input
-            type="text"
+            type="password"
             className="form-control"
             placeholder="*******"
             name="password"
