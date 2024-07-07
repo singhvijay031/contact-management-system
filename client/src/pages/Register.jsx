@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import "../assets/css/Register.css";
 import { useState } from "react";
+import Validations from "../components/Validations";
 
 const Register = () => {
   const [values, setValues] = useState({
@@ -16,6 +17,8 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const errs = Validations(values);
+    setErrors(errs);
   };
 
   return (
@@ -33,6 +36,7 @@ const Register = () => {
             name="name"
             onChange={handleInput}
           />
+          {errors.name && <span className="error"> {errors.name} </span>}
         </div>
 
         <div className="form-group">
@@ -47,6 +51,7 @@ const Register = () => {
             autoComplete="off"
             onChange={handleInput}
           />
+          {errors.email && <span className="error"> {errors.email} </span>}
         </div>
         <div className="form-group">
           <label htmlFor="password" className="form-label">
@@ -59,6 +64,7 @@ const Register = () => {
             name="password"
             onChange={handleInput}
           />
+          {errors.password && <span className="error">{errors.password}</span>}
         </div>
         <button className="form-btn">Register</button>
         <p>
