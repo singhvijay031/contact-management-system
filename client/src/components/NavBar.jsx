@@ -5,18 +5,18 @@ const NavBar = () => {
   return (
     <div className="navbar">
       <div className="navbar-left">
-        <Link href="" className="navbar-brand">
+        <Link to="/" className="navbar-brand">
           CONTACT MS
         </Link>
       </div>
       <div className="navbar-right">
-        <Link href="" className="navbar-link">
+        <Link to="/about" className="navbar-link">
           About
         </Link>
-        <Link href="" className="navbar-link">
+        <Link to="/login" className="navbar-link">
           Login
         </Link>
-        <Link href="" className="navbar-link">
+        <Link to="/register" className="navbar-link">
           Register
         </Link>
       </div>
