@@ -24,7 +24,7 @@ export default function Validations(values) {
     errors.password = "Password should not be empty ";
   } else if (!password_pattern.test(values.password)) {
     errors.password =
-      "Password must contain one small letter one Capital letter and length should be grater than 8";
+      "Password must contain one small letter one Capital letter and length should be greater than 8";
   } else {
     errors.password = "";
   }
