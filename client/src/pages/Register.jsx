@@ -4,6 +4,7 @@ const Register = () => {
   return (
     <div className="form-container">
       <form className="form">
+        <h2>Create Account</h2>
         <div className="form-group">
           <label htmlFor="name" className="form-label">
             Name:
