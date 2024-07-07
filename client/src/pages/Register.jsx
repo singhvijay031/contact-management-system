@@ -1,3 +1,5 @@
+import "../assets/css/Register.css";
+
 const Register = () => {
   return (
     <div className="form-container">
