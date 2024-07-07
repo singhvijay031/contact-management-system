@@ -8,14 +8,19 @@ const Register = () => {
     email: "",
     password: "",
   });
+  const [errors, setErrors] = useState({});
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="form-container">
-      <form className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <h2>Create An Account</h2>
         <div className="form-group">
           <label htmlFor="name" className="form-label">
