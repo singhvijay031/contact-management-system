@@ -15,17 +15,17 @@ export default function Validations(values) {
 
   if (values.email === "") {
     errors.email = "Email should not be empty.";
-    // } else if (!email_pattern.test(values.email)) {
-    //   errors.email = "Invalid email address.";
+  } else if (!email_pattern.test(values.email)) {
+    errors.email = "Invalid email address.";
   } else {
     errors.email = "";
   }
 
   if (values.password === "") {
     errors.password = "Password should not be empty.";
-    // } else if (!password_pattern.test(values.password)) {
-    //   errors.password =
-    //     "Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character (!@#$%^&*).";
+  } else if (!password_pattern.test(values.password)) {
+    errors.password =
+      "Password must be at least 8 characters long and include at least one lowercase letter, one uppercase letter, one digit, and one special character (!@#$%^&*).";
   } else {
     errors.password = "";
   }
