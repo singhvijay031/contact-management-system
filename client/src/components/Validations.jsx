@@ -5,12 +5,14 @@ export default function Validations(values) {
   const password_pattern =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,}$/;
 
-  if (values.name === "") {
-    errors.name = "Name should not be empty.";
-  } else if (values.name.length < 3 || values.name.length > 30) {
-    errors.name = "Name must be between 3 and 30 characters.";
-  } else {
-    errors.name = "";
+  if (values?.name) {
+    if (values?.name === "") {
+      errors.name = "Name should not be empty.";
+    } else if (values.name.length < 3 || values.name.length > 30) {
+      errors.name = "Name must be between 3 and 30 characters.";
+    } else {
+      errors.name = "";
+    }
   }
 
   if (values.email === "") {
