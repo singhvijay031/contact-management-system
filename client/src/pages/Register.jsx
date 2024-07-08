@@ -14,7 +14,7 @@ const Register = () => {
   });
   const [errors, setErrors] = useState({});
   const [serverErrors, setServerErrors] = useState([]);
-  const navigate = useNavigate(); // Initialize the useNavigate hook
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -24,8 +24,7 @@ const Register = () => {
     e.preventDefault();
     const errs = Validations(values);
     setErrors(errs);
-    if (Object.keys(errs).length === 0) {
-      // Ensure there are no validation errors
+    if (errs.name === "" && errs.email === "" && errs.password === "") {
       axios
         .post("http://127.0.0.1:8000/ContactManagementSystem/register", values)
         .then((res) => {
