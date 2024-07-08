@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
 import { useState } from "react";
 import Validations from "../components/Validations";
@@ -14,6 +14,7 @@ const Register = () => {
   });
   const [errors, setErrors] = useState({});
   const [serverErrors, setServerErrors] = useState([]);
+  const navigate = useNavigate(); // Initialize the useNavigate hook
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -23,17 +24,21 @@ const Register = () => {
     e.preventDefault();
     const errs = Validations(values);
     setErrors(errs);
-    if (errors.name === "" && errors.email === "" && errors.password === "") {
+    if (Object.keys(errs).length === 0) {
+      // Ensure there are no validation errors
       axios
         .post("http://127.0.0.1:8000/ContactManagementSystem/register", values)
-        .then(() => {
-          toast.success("Account Created Successfully", {
-            position: "top-right",
-            autoClose: 5000,
-          });
+        .then((res) => {
+          if (res.data.success) {
+            toast.success("Account Created Successfully", {
+              position: "top-right",
+              autoClose: 5000,
+            });
+            navigate("/login");
+          }
         })
         .catch((err) => {
-          if (err.response.data.errors) {
+          if (err.response && err.response.data.errors) {
             setServerErrors(err.response.data.errors);
           } else {
             console.log(err);
@@ -95,7 +100,7 @@ const Register = () => {
           ))}
         <button className="form-btn">Register</button>
         <p>
-          Already Registered?<Link to="/login">Login</Link>
+          Already Registered? <Link to="/login">Login</Link>
         </p>
       </form>
     </div>
