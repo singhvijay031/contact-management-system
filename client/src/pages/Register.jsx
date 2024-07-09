@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
 import { useState } from "react";
 import Validations from "../components/Validations";
@@ -14,6 +14,7 @@ const Register = () => {
   });
   const [errors, setErrors] = useState({});
   const [serverErrors, setServerErrors] = useState([]);
+  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -27,11 +28,14 @@ const Register = () => {
       axios
         .post("http://127.0.0.1:8000/ContactManagementSystem/register", values)
         .then((res) => {
-          console.log(res);
-          toast.success("Account Created Successfully", {
-            position: "top-right",
-            autoClose: 5000,
-          });
+          if (res.data.success) {
+            console.log(res);
+            toast.success("Account Created Successfully", {
+              position: "top-right",
+              autoClose: 5000,
+            });
+            navigate("/login");
+          }
         })
         .catch((err) => {
           if (err.response.data.errors) {
