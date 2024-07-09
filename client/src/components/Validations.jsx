@@ -28,4 +28,6 @@ export default function Validations(values) {
   } else {
     errors.password = "";
   }
+
+  return errors;
 }

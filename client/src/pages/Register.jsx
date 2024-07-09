@@ -1,9 +1,8 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "../assets/css/Register.css";
 import { useState } from "react";
 import Validations from "../components/Validations";
-import axios from "axios";
-import { toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
 
 const Register = () => {
@@ -13,8 +12,6 @@ const Register = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  const [serverErrors, setServerErrors] = useState([]);
-  const navigate = useNavigate();
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -24,26 +21,6 @@ const Register = () => {
     e.preventDefault();
     const errs = Validations(values);
     setErrors(errs);
-    if (errs.name === "" && errs.email === "" && errs.password === "") {
-      axios
-        .post("http://127.0.0.1:8000/ContactManagementSystem/register", values)
-        .then((res) => {
-          if (res.data.success) {
-            toast.success("Account Created Successfully", {
-              position: "top-right",
-              autoClose: 5000,
-            });
-            navigate("/login");
-          }
-        })
-        .catch((err) => {
-          if (err.response.data.errors) {
-            setServerErrors(err.response.data.errors);
-          } else {
-            console.log(err);
-          }
-        });
-    }
   };
 
   return (
@@ -91,12 +68,7 @@ const Register = () => {
           />
           {errors.password && <span className="error">{errors.password}</span>}
         </div>
-        {serverErrors.length > 0 &&
-          serverErrors.map((error, index) => (
-            <p className="error" key={index}>
-              {error.msg}
-            </p>
-          ))}
+
         <button className="form-btn">Register</button>
         <p>
           Already Registered? <Link to="/login">Login</Link>
