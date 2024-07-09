@@ -7,7 +7,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 const App = () => (
   <>
-    <ToastContainer />
     <Router>
       <Routes>
         <Route path="/" element={<Home />} />
@@ -15,6 +14,7 @@ const App = () => (
         <Route path="/login" element={<Login />} />
       </Routes>
     </Router>
+    <ToastContainer theme="dark" />
   </>
 );
 
