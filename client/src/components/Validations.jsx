@@ -16,8 +16,16 @@ export default function Validations(values) {
   if (values.email === "") {
     errors.email = "Email Should Not Be Empty";
   } else if (!email_pattern.test(values.email)) {
-    errors.name = "Invalid Email!!!";
+    errors.email = "Invalid Email!!!";
   } else {
-    errors.name = "";
+    errors.email = "";
+  }
+
+  if (values.password === "") {
+    errors.email = "Password Should Not Be Empty";
+  } else if (!password_pattern.test(values.email)) {
+    errors.password = "Enter Valid Password";
+  } else {
+    errors.password = "";
   }
 }
