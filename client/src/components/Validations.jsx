@@ -1,10 +1,22 @@
 export default function Validations(values) {
   let errors = {};
 
+  const email_pattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const password_pattern =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
   if (values.name === "") {
     errors.name = "Name Should Not Be Empty";
   } else if (values.name.leght < 3 || values.name.leght > 30) {
     errors.name = "Name must be B/W 3-30";
+  } else {
+    errors.name = "";
+  }
+
+  if (values.email === "") {
+    errors.email = "Email Should Not Be Empty";
+  } else if (!email_pattern.test(values.email)) {
+    errors.name = "Invalid Email!!!";
   } else {
     errors.name = "";
   }
