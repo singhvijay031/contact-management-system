@@ -28,14 +28,15 @@ const Login = () => {
         .post("http://127.0.0.1:8000/ContactManagementSystem/login", values)
         .then((res) => {
           if (res.data.success) {
-            toast.success("Account Created Successfully", {
+            toast.success("Login Successfully", {
               position: "top-right",
               autoClose: 5000,
             });
-            navigate("/login");
+            navigate("/");
           }
         })
         .catch((err) => {
+          console.log(err);
           if (err.response && err.response.data.errors) {
             setServerErrors(err.response.data.errors);
           } else {

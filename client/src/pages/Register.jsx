@@ -37,7 +37,7 @@ const Register = () => {
           }
         })
         .catch((err) => {
-          if (err.response && err.response.data.errors) {
+          if (err.response.data.errors) {
             setServerErrors(err.response.data.errors);
           } else {
             console.log(err);

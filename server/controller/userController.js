@@ -2,6 +2,9 @@ import express from "express";
 import { UserModel } from "../models/user.js";
 import { validationResult } from "express-validator";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config({ path: "../config/.env" });
 
 const Register = async (req, res) => {
   const errors = validationResult(req);
@@ -27,4 +30,34 @@ const Register = async (req, res) => {
   }
 };
 
-export { Register };
+const Login = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  const { email, password } = req.body;
+  try {
+    const userExist = await UserModel.findOne({ email });
+    if (!userExist) {
+      return res.status(400).json({
+        errors: [{ message: "User doesn't exists" }],
+      });
+    }
+    const isPasswordOk = bcrypt.compare(password, userExist.password);
+    if (!isPasswordOk) {
+      return res.status(400).json({
+        errors: [{ message: "Wrong password" }],
+      });
+    }
+    const token = jwt.sign({ _id: userExist._id }, process.env.JWT_SECRET_KEY, {
+      expiresIn: "2d",
+    });
+    const user = { ...userExist._doc, password: undefined };
+    return res.status(201).json({ success: true, user, token });
+  } catch (err) {
+    console.log(err);
+    return res.status(500).json({ error: err.message });
+  }
+};
+
+export { Register, Login };
