@@ -25,7 +25,7 @@ const Register = () => {
     setErrors(errs);
     if (errs.name === "" && errs.email === "" && errs.password === "") {
       axios
-        .post("", values)
+        .post("http://127.0.0.1:8000/ContactManagementSystem/register", values)
         .then((res) => {
           console.log(res);
           toast.success("Account Created Successfully", {
