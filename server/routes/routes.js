@@ -20,6 +20,7 @@ router.post(
       .isLength({ min: 5, max: 30 })
       .withMessage("Password length Must Be Between 5-30"),
   ],
+
   Register
 );
 

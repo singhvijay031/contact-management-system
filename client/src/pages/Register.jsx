@@ -13,7 +13,7 @@ const Register = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
-  // const [serverErrors, setServerErrors] = useState([]);
+  const [serverErrors, setServerErrors] = useState([]);
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -34,7 +34,11 @@ const Register = () => {
           });
         })
         .catch((err) => {
-          console.log(err);
+          if (err.response.data.errors) {
+            setServerErrors(err.response.data.errors);
+          } else {
+            console.log(err);
+          }
         });
     }
   };
@@ -84,6 +88,12 @@ const Register = () => {
           />
           {errors.password && <span className="error">{errors.password}</span>}
         </div>
+        {serverErrors.length > 0 &&
+          serverErrors.map((error, index) => {
+            <p className="error" key={index}>
+              {error.msg}
+            </p>;
+          })}
 
         <button className="form-btn">Register</button>
         <p>
