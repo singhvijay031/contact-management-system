@@ -7,7 +7,7 @@ export default function Validations(values) {
 
   if (values.name === "") {
     errors.name = "Name Should Not Be Empty";
-  } else if (values.name.leght < 3 || values.name.leght > 30) {
+  } else if (values.name.length <= 3 || values.name.length > 30) {
     errors.name = "Name must be B/W 3-30";
   } else {
     errors.name = "";
@@ -16,7 +16,7 @@ export default function Validations(values) {
   if (values.email === "") {
     errors.email = "Email Should Not Be Empty";
   } else if (!email_pattern.test(values.email)) {
-    errors.email = "Invalid Email!!!";
+    errors.email = "Invalid Email";
   } else {
     errors.email = "";
   }
