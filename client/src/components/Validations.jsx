@@ -22,7 +22,7 @@ export default function Validations(values) {
   }
 
   if (values.password === "") {
-    errors.email = "Password Should Not Be Empty";
+    errors.password = "Password Should Not Be Empty";
   } else if (!password_pattern.test(values.email)) {
     errors.password = "Enter Valid Password";
   } else {
