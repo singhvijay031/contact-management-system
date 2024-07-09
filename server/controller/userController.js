@@ -1,5 +1,8 @@
-import express from "express";
+import { UserModel } from "../models/User.Model.js";
 
-const Register = () => {};
+const Register = (req, res) => {
+  console.log("Registered");
+  res.send("User Registered");
+};
 
-export default Register;
+export { Register };
