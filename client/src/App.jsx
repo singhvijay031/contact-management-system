@@ -8,6 +8,7 @@ import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import DashBoard from "./pages/DashBoard";
 import Contact from "./components/Contact";
+import AddContact from "./components/AddContact";
 
 export const UserContext = createContext(null);
 
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<DashBoard />}>
             <Route index element={<Contact />} />
+            <Route path="/dashboard/add-contact" element={<AddContact />} />
           </Route>
         </Routes>
       </Router>
