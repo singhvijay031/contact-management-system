@@ -53,8 +53,8 @@ const Login = async (req, res) => {
       process.env.JWT_SECRET_KEY,
       { expiresIn: "2d" }
     );
-    result._doc.password = undefined;
-    return res.status(201).json({ success: true, ...result._doc });
+    const user = { ...existingUser._doc, password: undefined };
+    return res.status(201).json({ success: true, user, token });
   } catch (error) {
     console.log("Error registering user:", error);
     return res.status(500).json({ message: "Server error", error });
