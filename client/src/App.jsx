@@ -7,16 +7,18 @@ import "react-toastify/dist/ReactToastify.css";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
 import DashBoard from "./pages/DashBoard";
+import Contact from "./components/Contact";
 
 export const UserContext = createContext(null);
 
 const App = () => {
   const [user, setUser] = useState();
+
   useEffect(() => {
     axios
       .get("http://127.0.0.1:8000/ContactManagementSystem/verify", {
         headers: {
-          Authorization: `Bearear ${localStorage.getItem("token")}`,
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Fixed typo in 'Bearer'
         },
       })
       .then((res) => {
@@ -36,7 +38,9 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/dashboard" element={<DashBoard />}>
+            <Route index element={<Contact />} />
+          </Route>
         </Routes>
       </Router>
       <ToastContainer theme="dark" />

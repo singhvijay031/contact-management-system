@@ -1,6 +1,6 @@
-// import React from 'react'
+// import React from 'react';
+import { Outlet } from "react-router-dom";
 import "../assets/css/DashBoard.css";
-
 import NavBar from "../components/NavBar";
 import SideBar from "../components/SideBar";
 
@@ -13,7 +13,7 @@ const DashBoard = () => {
           <SideBar />
         </div>
         <div className="contact-container">
-          <h1>Content</h1>
+          <Outlet />
         </div>
       </div>
     </>
