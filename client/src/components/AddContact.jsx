@@ -1,10 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
 import { useState } from "react";
-import Validations from "../components/Validations";
 import axios from "axios";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import {
+  FaAt,
+  FaPhoneFlip,
+  FaRegAddressCard,
+  FaUserPlus,
+} from "react-icons/fa6";
 
 const AddContact = () => {
   const [values, setValues] = useState({
@@ -22,36 +26,38 @@ const AddContact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errs = Validations(values);
-    // setErrors(errs);
-    if (errs.name === "" && errs.email === "" && errs.password === "") {
-      axios
-        .post("http://127.0.0.1:8000/ContactManagementSystem/register", values)
-        .then((res) => {
-          if (res.data.success) {
-            console.log(res);
-            toast.success("Account Created Successfully", {
-              position: "top-right",
-              autoClose: 5000,
-            });
-            navigate("/login");
-          }
-        })
-        .catch((err) => {
-          if (err.response.data.errors) {
-            setServerErrors(err.response.data.errors);
-          } else {
-            console.log(err);
-          }
-        });
-    }
+
+    axios
+      .post(
+        "http://127.0.0.1:8000/ContactManagementSystem/add-contact",
+        values,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      )
+      .then((res) => {
+        if (res.data.success) {
+          console.log(res);
+          toast.success("Contact Added Successfully", {
+            position: "top-right",
+            autoClose: 5000,
+          });
+          navigate("/dashboard");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
-    <div className="form-container">
-      <form className="form" onSubmit={handleSubmit}>
+    <div className="add-form-container">
+      <form className="add-form" onSubmit={handleSubmit}>
         <h2>Create Contact</h2>
         <div className="form-group">
+          <FaUserPlus />
           <input
             type="text"
             className="form-control"
@@ -62,6 +68,7 @@ const AddContact = () => {
         </div>
 
         <div className="form-group">
+          <FaAt />
           <input
             type="email"
             className="form-control"
@@ -72,6 +79,7 @@ const AddContact = () => {
           />
         </div>
         <div className="form-group">
+          <FaPhoneFlip />
           <input
             type="text"
             className="form-control"
@@ -81,6 +89,7 @@ const AddContact = () => {
           />
         </div>
         <div className="form-group">
+          <FaRegAddressCard />
           <input
             type="text"
             className="form-control"

@@ -19,7 +19,7 @@ const App = () => {
     axios
       .get("http://127.0.0.1:8000/ContactManagementSystem/verify", {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`, // Fixed typo in 'Bearer'
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       })
       .then((res) => {
