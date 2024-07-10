@@ -37,7 +37,7 @@ const Login = () => {
             });
             localStorage.setItem("token", res.data.token);
             setUser(res.data.user);
-            navigate("/");
+            navigate("/dashboard");
           }
         })
         .catch((err) => {
