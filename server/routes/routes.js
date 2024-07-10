@@ -44,4 +44,6 @@ router.post(
   Login
 );
 
+router.get("/verify");
+
 export { router as Router };

@@ -13,7 +13,11 @@ const App = () => {
   const [user, setUser] = useState();
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/ContactManagementSystem/verify")
+      .get("http://127.0.0.1:8000/ContactManagementSystem/verify", {
+        headers: {
+          Authorization: `Berear ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         if (res.data.success) {
           setUser(res.data.user);
