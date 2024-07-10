@@ -2,6 +2,7 @@
 import "../assets/css/DashBoard.css";
 
 import NavBar from "../components/NavBar";
+import SideBar from "../components/SideBar";
 
 const DashBoard = () => {
   return (
@@ -9,7 +10,7 @@ const DashBoard = () => {
       <NavBar />
       <div className="dashboard">
         <div className="sidebar-container">
-          <h1>Side Bar</h1>
+          <SideBar />
         </div>
         <div className="contact-container">
           <h1>Content</h1>
