@@ -1,0 +1,13 @@
+.dashboard{
+    display: flex;
+    height: 90vh;
+}
+
+.dashboard .sidebar-container{
+    width: 20%;
+    border-right: 2px solid gray;
+}
+
+.dashboard .contact-container{
+    width: 80%;
+}
