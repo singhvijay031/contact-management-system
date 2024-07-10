@@ -20,4 +20,13 @@ const createContact = async (req, res) => {
   }
 };
 
-export { createContact };
+const getContacts = async (req, res) => {
+  try {
+    const contacts = await ContactModel.find({ postedBy: req.user._id });
+    return res.status(200).json({ success: true, contacts });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
+export { createContact, getContacts };
