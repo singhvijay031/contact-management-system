@@ -1,6 +1,9 @@
 import { validationResult } from "express-validator";
 import { UserModel } from "../models/User.Model.js";
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config({ path: "../config/.env" });
 
 const Register = async (req, res) => {
   const errors = validationResult(req);
@@ -26,4 +29,36 @@ const Register = async (req, res) => {
   }
 };
 
-export { Register };
+const Login = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  try {
+    const { email, password } = req.body;
+    const existingUser = await UserModel.findOne({ email });
+    if (!existingUser) {
+      return res
+        .status(400)
+        .json({ errors: [{ message: "User not registered" }] });
+    }
+    const cmpPassword = bcrypt.compare(password, existingUser.password);
+    if (!cmpPassword) {
+      return res
+        .status(400)
+        .json({ errors: [{ message: "Invalid password" }] });
+    }
+    const token = jwt.sign(
+      { _id: existingUser._id },
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "2d" }
+    );
+    result._doc.password = undefined;
+    return res.status(201).json({ success: true, ...result._doc });
+  } catch (error) {
+    console.log("Error registering user:", error);
+    return res.status(500).json({ message: "Server error", error });
+  }
+};
+
+export { Register, Login };

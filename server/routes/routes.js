@@ -1,5 +1,5 @@
 import express from "express";
-import { Register } from "../controller/userController.js";
+import { Register, Login } from "../controller/userController.js";
 const router = express.Router();
 import { body } from "express-validator";
 
@@ -22,6 +22,26 @@ router.post(
   ],
 
   Register
+);
+
+router.post(
+  "/login",
+  [
+    body("email")
+      .trim()
+      .notEmpty()
+      .withMessage("Email Should Not Be Empty")
+      .isEmail()
+      .withMessage("Invalid Email"),
+    body("password")
+      .trim()
+      .notEmpty()
+      .withMessage("Passsword Should Not Be Empty ")
+      .isLength({ min: 5, max: 30 })
+      .withMessage("Password length Must Be Between 5-30"),
+  ],
+
+  Login
 );
 
 export { router as Router };
