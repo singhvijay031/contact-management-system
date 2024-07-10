@@ -3,7 +3,9 @@ import { Register, Login, Auth } from "../controller/userController.js";
 const router = express.Router();
 import { body } from "express-validator";
 import { VerifyUser } from "../middleware/VerifyUser.js";
+import { createContact } from "../controller/contactController.js";
 
+//user routes
 router.post(
   "/register",
   [
@@ -46,5 +48,8 @@ router.post(
 );
 
 router.get("/verify", VerifyUser, Auth);
+
+//contact routes
+router.post("/add-contact", VerifyUser, createContact);
 
 export { router as Router };

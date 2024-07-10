@@ -26,7 +26,6 @@ const AddContact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios
       .post(
         "http://127.0.0.1:8000/ContactManagementSystem/add-contact",
@@ -84,7 +83,7 @@ const AddContact = () => {
             type="text"
             className="form-control"
             placeholder="Enter Phone Number"
-            name="phone "
+            name="phone"
             onChange={handleInput}
           />
         </div>
