@@ -4,12 +4,25 @@ import Home from "./pages/Home";
 import Login from "./pages/Login";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import axios from "axios";
 
 export const UserContext = createContext(null);
 
 const App = () => {
   const [user, setUser] = useState();
+  useEffect(() => {
+    axios
+      .get("http://127.0.0.1:8000/ContactManagementSystem/verify")
+      .then((res) => {
+        if (res.data.success) {
+          setUser(res.data.user);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   return (
     <UserContext.Provider value={{ user, setUser }}>
