@@ -6,6 +6,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createContext, useEffect, useState } from "react";
 import axios from "axios";
+import DashBoard from "./pages/DashBoard";
 
 export const UserContext = createContext(null);
 
@@ -35,6 +36,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<DashBoard />} />
         </Routes>
       </Router>
       <ToastContainer theme="dark" />
