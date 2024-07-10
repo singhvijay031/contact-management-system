@@ -62,7 +62,7 @@ const Login = async (req, res) => {
 };
 
 const Auth = (req, res) => {
-  return res.status(200).json({ success: true, ...req.user._doc });
+  return res.status(200).json({ success: true, user: { ...req.user._doc } });
 };
 
-export { Register, Login };
+export { Register, Login, Auth };
