@@ -1,16 +1,18 @@
 import { Link, useNavigate } from "react-router-dom";
 import "../assets/css/Register.css";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Validations from "../components/Validations";
 import axios from "axios";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { UserContext } from "../App";
 
 const Login = () => {
   const [values, setValues] = useState({
     email: "",
     password: "",
   });
+  const { setUser } = useContext(UserContext);
   const [errors, setErrors] = useState({});
   const [serverErrors, setServerErrors] = useState([]);
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ const Login = () => {
     const errs = Validations(values);
     setErrors(errs);
 
-    if (errs.email === "" && errs.password === "") {
+    if (!errs.email && !errs.password) {
       axios
         .post("http://127.0.0.1:8000/ContactManagementSystem/login", values)
         .then((res) => {
@@ -33,6 +35,8 @@ const Login = () => {
               position: "top-right",
               autoClose: 5000,
             });
+            localStorage.setItem("token", res.data.token);
+            setUser(res.data.user);
             navigate("/");
           }
         })
