@@ -23,6 +23,7 @@ const Login = () => {
     e.preventDefault();
     const errs = Validations(values);
     setErrors(errs);
+
     if (errs.email === "" && errs.password === "") {
       axios
         .post("http://127.0.0.1:8000/ContactManagementSystem/login", values)
@@ -40,6 +41,9 @@ const Login = () => {
           if (err.response && err.response.data.errors) {
             setServerErrors(err.response.data.errors);
           } else {
+            setServerErrors([
+              { message: "Server error, please try again later." },
+            ]);
             console.log(err);
           }
         });
@@ -62,6 +66,7 @@ const Login = () => {
             name="email"
             autoComplete="off"
             onChange={handleInput}
+            value={values.email}
           />
           {errors.email && <span className="error"> {errors.email} </span>}
         </div>
@@ -75,13 +80,14 @@ const Login = () => {
             placeholder="*******"
             name="password"
             onChange={handleInput}
+            value={values.password}
           />
           {errors.password && <span className="error">{errors.password}</span>}
         </div>
         {serverErrors.length > 0 &&
           serverErrors.map((error, index) => (
             <p className="error" key={index}>
-              {error.msg}
+              {error.message}
             </p>
           ))}
         <button className="form-btn">Login</button>

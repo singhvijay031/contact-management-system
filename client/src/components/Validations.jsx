@@ -5,8 +5,8 @@ export default function Validations(values) {
   // const password_pattern =
   //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
 
-  if (values?.name) {
-    if (values.name === "") {
+  if (values.name !== undefined) {
+    if (values.name.trim() === "") {
       errors.name = "Name Should Not Be Empty";
     } else if (values.name.length <= 3 || values.name.length > 30) {
       errors.name = "Name must be B/W 3-30";
@@ -15,18 +15,14 @@ export default function Validations(values) {
     }
   }
 
-  if (values.email === "") {
+  if (values.email.trim() === "") {
     errors.email = "Email Should Not Be Empty";
-    // } else if (!email_pattern.test(values.email)) {
-    //   errors.email = "Invalid Email";
   } else {
     errors.email = "";
   }
 
-  if (values.password === "") {
+  if (values.password.trim() === "") {
     errors.password = "Password Should Not Be Empty";
-    // } else if (!password_pattern.test(values.password)) {
-    //   errors.password = "Enter Valid Password";
   } else {
     errors.password = "";
   }

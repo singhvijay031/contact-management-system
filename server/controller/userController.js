@@ -34,15 +34,15 @@ const Login = async (req, res) => {
   if (!errors.isEmpty()) {
     return res.status(400).json({ errors: errors.array() });
   }
+  const { email, password } = req.body;
   try {
-    const { email, password } = req.body;
     const existingUser = await UserModel.findOne({ email });
     if (!existingUser) {
       return res
         .status(400)
         .json({ errors: [{ message: "User not registered" }] });
     }
-    const cmpPassword = bcrypt.compare(password, existingUser.password);
+    const cmpPassword = await bcrypt.compare(password, existingUser.password);
     if (!cmpPassword) {
       return res
         .status(400)
@@ -56,7 +56,7 @@ const Login = async (req, res) => {
     const user = { ...existingUser._doc, password: undefined };
     return res.status(201).json({ success: true, user, token });
   } catch (error) {
-    console.log("Error registering user:", error);
+    console.log("Error logging in user:", error);
     return res.status(500).json({ message: "Server error", error });
   }
 };
