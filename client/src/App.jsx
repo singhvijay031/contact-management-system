@@ -9,6 +9,7 @@ import axios from "axios";
 import DashBoard from "./pages/DashBoard";
 import Contact from "./components/Contact";
 import AddContact from "./components/AddContact";
+import EditContact from "./components/EditContact";
 
 export const UserContext = createContext(null);
 
@@ -42,6 +43,10 @@ const App = () => {
           <Route path="/dashboard" element={<DashBoard />}>
             <Route index element={<Contact />} />
             <Route path="/dashboard/add-contact" element={<AddContact />} />
+            <Route
+              path="/dashboard/edit-contact/:id"
+              element={<EditContact />}
+            />
           </Route>
         </Routes>
       </Router>
