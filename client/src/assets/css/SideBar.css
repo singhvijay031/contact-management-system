@@ -1,3 +1,7 @@
+*{
+    box-sizing: border-box;
+}
+
 .sidebar{
     margin-top: 25%;
 }
@@ -22,4 +26,12 @@
 
 .icon{
     margin-right: 10px;
+}
+
+.active{
+    background-color: rgb(5, 121, 121);
+}
+
+.active .sidebar-link{
+    color: white;
 }
