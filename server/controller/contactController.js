@@ -29,4 +29,17 @@ const getContacts = async (req, res) => {
   }
 };
 
-export { createContact, getContacts };
+const getContact = async (req, res) => {
+  const { id } = req.params;
+  if (!id) {
+    return res.status(401).json({ error: "No ID Specified" });
+  }
+  try {
+    const contacts = await ContactModel.findOne({ _id: id });
+    return res.status(200).json({ success: true, ...contacts._doc });
+  } catch (err) {
+    return res.status(500).json({ error: err.message });
+  }
+};
+
+export { createContact, getContacts, getContact };
