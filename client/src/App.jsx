@@ -62,7 +62,7 @@ const App = () => {
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
-      <ToastContainer theme="dark" />
+      <ToastContainer theme="light" />
     </UserContext.Provider>
   );
 };
