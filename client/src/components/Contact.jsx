@@ -6,6 +6,8 @@ import DataTable from "react-data-table-component";
 import { FaPenToSquare, FaRegTrashCan } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import CircleLoader from "react-spinners/CircleLoader";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 
 const customStyles = {
   headCells: {
@@ -22,9 +24,46 @@ const customStyles = {
   },
 };
 
+const MySwal = withReactContent(Swal);
+
 const Contact = () => {
   const [contacts, setContacts] = useState([]);
   const [loading, setLoading] = useState(false);
+
+  const deleteRecord = (id) => {
+    MySwal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(
+            `http://localhost:8000/ContactManagementSystem/contact/${id}`,
+            {
+              headers: {
+                Authorization: `Bearer ${localStorage.getItem("token")}`,
+              },
+            }
+          )
+          .then((res) => {
+            setContacts(res.data.contacts);
+          })
+          .catch((err) => {
+            console.error("Error deleting contact:", err);
+          });
+        MySwal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
 
   const columns = [
     {
@@ -46,9 +85,10 @@ const Contact = () => {
           <Link to={`/dashboard/edit-contact/${row._id}`}>
             <FaPenToSquare className="table-icon1" />
           </Link>
-          <Link>
-            <FaRegTrashCan className="table-icon2" />
-          </Link>
+          <FaRegTrashCan
+            className="table-icon2"
+            onClick={() => deleteRecord(row._id)}
+          />
         </>
       ),
     },

@@ -8,6 +8,7 @@ import {
   getContacts,
   getContact,
   updateContact,
+  deleteContact,
 } from "../controller/contactController.js";
 
 //user routes
@@ -59,5 +60,6 @@ router.post("/add-contact", VerifyUser, createContact);
 router.get("/contacts", VerifyUser, getContacts);
 router.get("/contact/:id", VerifyUser, getContact);
 router.put("/update-contact/:id", VerifyUser, updateContact);
+router.delete("/contact/:id", VerifyUser, deleteContact);
 
 export { router as Router };
