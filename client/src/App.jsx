@@ -10,6 +10,7 @@ import DashBoard from "./pages/DashBoard";
 import Contact from "./components/Contact";
 import AddContact from "./components/AddContact";
 import EditContact from "./components/EditContact";
+import Logout from "./pages/Logout";
 
 export const UserContext = createContext(null);
 
@@ -48,6 +49,7 @@ const App = () => {
               element={<EditContact />}
             />
           </Route>
+          <Route path="/logout" element={<Logout />} />
         </Routes>
       </Router>
       <ToastContainer theme="dark" />

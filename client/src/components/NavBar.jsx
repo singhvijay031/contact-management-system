@@ -24,7 +24,7 @@ const NavBar = () => {
             <Link to="/register" className="navbar-link">
               {user.name}
             </Link>
-            <Link to="/login" className="navbar-link">
+            <Link to="/logout" className="navbar-link">
               Logout
             </Link>
           </>

@@ -48,7 +48,7 @@ const SideBar = () => {
         className={`sidebar-item ${activeLink === 3 ? "active" : ""}`}
         onClick={() => setActiveLink(3)}
       >
-        <Link className="sidebar-link">
+        <Link to="/logout" className="sidebar-link">
           <FaPowerOff className="icon" />
           Exit
         </Link>
