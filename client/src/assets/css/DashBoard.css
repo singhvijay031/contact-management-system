@@ -31,3 +31,12 @@
 .table-icon2{
     color: red;
 }
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50vh; 
+    width: 100%;
+  }
+  
