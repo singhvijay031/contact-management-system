@@ -11,6 +11,7 @@ import Contact from "./components/Contact";
 import AddContact from "./components/AddContact";
 import EditContact from "./components/EditContact";
 import Logout from "./pages/Logout";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 export const UserContext = createContext(null);
 
@@ -41,7 +42,14 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/dashboard" element={<DashBoard />}>
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoutes>
+                <DashBoard />
+              </ProtectedRoutes>
+            }
+          >
             <Route index element={<Contact />} />
             <Route path="/dashboard/add-contact" element={<AddContact />} />
             <Route
