@@ -99,9 +99,6 @@ const AddContact = () => {
         </div>
 
         <button className="form-btn">Add</button>
-        {/* <p>
-          Already Registered? <Link to="/login">Login</Link>
-        </p> */}
       </form>
     </div>
   );
