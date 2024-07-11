@@ -12,6 +12,7 @@ import AddContact from "./components/AddContact";
 import EditContact from "./components/EditContact";
 import Logout from "./pages/Logout";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import ErrorPage from "./pages/ErrorPage";
 
 export const UserContext = createContext(null);
 
@@ -58,6 +59,7 @@ const App = () => {
             />
           </Route>
           <Route path="/logout" element={<Logout />} />
+          <Route path="*" element={<ErrorPage />} />
         </Routes>
       </Router>
       <ToastContainer theme="dark" />
