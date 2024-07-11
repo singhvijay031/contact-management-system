@@ -28,8 +28,8 @@ const EditContact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(
-        "http://127.0.0.1:8000/ContactManagementSystem/update-contact" + id,
+      .put(
+        `http://127.0.0.1:8000/ContactManagementSystem/update-contact/${id}`,
         values,
         {
           headers: {
@@ -40,7 +40,7 @@ const EditContact = () => {
       .then((res) => {
         if (res.data.success) {
           console.log(res);
-          toast.success("Contact Added Successfully", {
+          toast.success("Contact Updated Successfully", {
             position: "top-right",
             autoClose: 5000,
           });
@@ -72,7 +72,7 @@ const EditContact = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   return (
     <div className="add-form-container">

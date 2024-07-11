@@ -7,6 +7,7 @@ import {
   createContact,
   getContacts,
   getContact,
+  updateContact,
 } from "../controller/contactController.js";
 
 //user routes
@@ -57,5 +58,6 @@ router.get("/verify", VerifyUser, Auth);
 router.post("/add-contact", VerifyUser, createContact);
 router.get("/contacts", VerifyUser, getContacts);
 router.get("/contact/:id", VerifyUser, getContact);
+router.put("/update-contact/:id", VerifyUser, updateContact);
 
 export { router as Router };
