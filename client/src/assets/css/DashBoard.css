@@ -38,5 +38,16 @@
     align-items: center;
     height: 50vh; 
     width: 100%;
-  }
+}
+
+/* ErrorPage */
+.not-found{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: rgb(20, 20, 20);
+    color: yellow;
+    justify-content: center;
+    align-items: center;
+}
   
