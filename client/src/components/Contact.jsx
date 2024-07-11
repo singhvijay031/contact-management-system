@@ -92,7 +92,7 @@ const Contact = () => {
             customStyles={customStyles}
             pagination
           />
-          {contacts.length === 0 ? <h1>Add a Contact</h1> : <></>}
+          {contacts.length === 0 ? <h1>Add A Contact</h1> : <></>}
         </div>
       )}
     </>
