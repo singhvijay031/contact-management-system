@@ -19,6 +19,7 @@ const EditContact = () => {
   });
 
   const navigate = useNavigate();
+  const { id } = useParams();
 
   const handleInput = (e) => {
     setValues({ ...values, [e.target.name]: e.target.value });
@@ -28,7 +29,7 @@ const EditContact = () => {
     e.preventDefault();
     axios
       .post(
-        "http://127.0.0.1:8000/ContactManagementSystem/add-contact",
+        "http://127.0.0.1:8000/ContactManagementSystem/update-contact" + id,
         values,
         {
           headers: {
@@ -51,10 +52,9 @@ const EditContact = () => {
       });
   };
 
-  const { id } = useParams();
   useEffect(() => {
     axios
-      .get(`http://127.0.0.1:8000/ContactManagementSystem/contacts/${id}`, {
+      .get(`http://127.0.0.1:8000/ContactManagementSystem/contact/${id}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
