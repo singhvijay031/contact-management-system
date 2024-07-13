@@ -28,10 +28,7 @@ const Login = () => {
 
     if (!errs.email && !errs.password) {
       axios
-        .post(
-          "https://contact-api-ten.vercel.app/ContactManagementSystem/login",
-          values
-        )
+        .post("https://contact-api-pied.vercel.app/login", values)
         .then((res) => {
           if (res.data.success) {
             toast.success("Login Successfully", {

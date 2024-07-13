@@ -26,10 +26,7 @@ const Register = () => {
     setErrors(errs);
     if (errs.name === "" && errs.email === "" && errs.password === "") {
       axios
-        .post(
-          "https://contact-api-ten.vercel.app/ContactManagementSystem/register",
-          values
-        )
+        .post("https://contact-api-pied.vercel.app/register", values)
         .then((res) => {
           if (res.data.success) {
             console.log(res);

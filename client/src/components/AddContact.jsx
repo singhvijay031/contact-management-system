@@ -27,7 +27,7 @@ const AddContact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post("https://contact-api-ten.vercel.app/add-contact", values, {
+      .post("https://contact-api-pied.vercel.app/add-contact", values, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

@@ -97,7 +97,7 @@ const Contact = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("https://contact-api-ten.vercel.app/contacts", {
+      .get("https://contact-api-pied.vercel.app/contacts", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },

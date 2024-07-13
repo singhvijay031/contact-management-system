@@ -28,15 +28,11 @@ const EditContact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .put(
-        `https://contact-api-ten.vercel.app/ContactManagementSystem/update-contact/${id}`,
-        values,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
+      .put(`https://contact-api-pied.vercel.app/update-contact/${id}`, values, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         if (res.data.success) {
           console.log(res);

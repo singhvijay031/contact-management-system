@@ -21,7 +21,7 @@ const App = () => {
 
   useEffect(() => {
     axios
-      .get("https://contact-api-ten.vercel.app/verify", {
+      .get("https://contact-api-pied.vercel.app/verify", {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
