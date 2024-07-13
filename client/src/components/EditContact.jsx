@@ -29,7 +29,7 @@ const EditContact = () => {
     e.preventDefault();
     axios
       .put(
-        `http://127.0.0.1:8000/ContactManagementSystem/update-contact/${id}`,
+        `https://contact-api-ten.vercel.app/ContactManagementSystem/update-contact/${id}`,
         values,
         {
           headers: {

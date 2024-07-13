@@ -28,7 +28,10 @@ const Login = () => {
 
     if (!errs.email && !errs.password) {
       axios
-        .post("http://127.0.0.1:8000/ContactManagementSystem/login", values)
+        .post(
+          "https://contact-api-ten.vercel.app/ContactManagementSystem/login",
+          values
+        )
         .then((res) => {
           if (res.data.success) {
             toast.success("Login Successfully", {

@@ -27,15 +27,11 @@ const AddContact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(
-        "http://127.0.0.1:8000/ContactManagementSystem/add-contact",
-        values,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem("token")}`,
-          },
-        }
-      )
+      .post("https://contact-api-ten.vercel.app/add-contact", values, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
       .then((res) => {
         if (res.data.success) {
           console.log(res);
