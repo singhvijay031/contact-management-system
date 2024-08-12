@@ -1,6 +1,6 @@
 # Contact Management System
 
-![Contact Management System](https://drive.google.com/drive/u/0/folders/1Rika6uc89HMQ-A4MGESZ4LMd26n3RiZr)
+
 
 ## Overview
 
