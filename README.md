@@ -64,7 +64,7 @@ server/
 ### Prerequisites
 
 - Node.js
-- npm or yarn
+- npm
 - MongoDB
 
 ### Steps
